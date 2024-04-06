@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const itemSchema = mongoose.Schema({
+  uid: {type: mongoose.Schema.Types.ObjectId, ref: "users"},
   name: String ,
   price: Number ,
   brand: String ,
@@ -11,6 +12,6 @@ const itemSchema = mongoose.Schema({
 {timestamps: true}
 );
 
-const ItemModel = mongoose.model("user", itemSchema);
+const ItemModel = mongoose.model("items", itemSchema);
 
 module.exports = ItemModel;

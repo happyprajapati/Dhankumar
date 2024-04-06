@@ -18,7 +18,7 @@ routes.post('/login', validateLogin, loginUser);
 routes.get("/getitems", getItems);
 
 // Get item API
-routes.get("/getitem/*", getItem);
+routes.get("/getitem/:id", getItem);
 
 // Add item API
 routes.post("/additem", itemImage.array("itemImg"), varifyAuthToken , addItem);
