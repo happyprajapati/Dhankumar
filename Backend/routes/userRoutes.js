@@ -23,7 +23,7 @@ routes.get("/getitem/:id", getItem);
 // Add item API
 routes.post("/additem", itemImage.array("itemImg"), varifyAuthToken , addItem);
 
-Router.post("/placeoder", placeOrder);
+routes.post("/placeorder", placeOrder);
 
 // routes.post("/send-token", sentResetPassToken);
 
