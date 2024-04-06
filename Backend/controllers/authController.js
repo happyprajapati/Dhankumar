@@ -1,5 +1,4 @@
-const bcrypt = require("bcrypt");
-const User = require("../models/user");
+const User = require("../models/users.js");
 const { validationResult } = require("express-validator");
 
 const loginUser = async (req, res) => {
@@ -10,8 +9,8 @@ const loginUser = async (req, res) => {
       const user = await User.findOne({ email: email }).select('+password');
       if (user) {
         // if(user.isVerified == false) return res.status(200).json({ success: false, data: { message: "Please verify your email." } })
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (isMatch) {
+        // const isMatch = await bcrypt.compare(password, user.password);
+        if (user.password == password) {
           return res.status(200).json({
             success: true,
             data: {
