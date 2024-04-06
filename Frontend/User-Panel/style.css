@@ -629,7 +629,7 @@ a {
 
 /* Background Image */
 .bg-image--1 {
-  background-image: url(images/bg/1.jpg);
+  background-image: url(images/bg/1.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
@@ -660,7 +660,7 @@ a {
   background-position: center center;
 /* box-shadow: #000;*/ }
 .bg-image--7 {
-  background-image: url(images/bg/7.jpg);
+  background-image: url(images/bg/7.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
