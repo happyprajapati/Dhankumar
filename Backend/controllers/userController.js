@@ -99,8 +99,16 @@ const placeOrder = async (req, res) => {
       options,
       (err, order) => {
         if (!err) {
-          return res.json({ code: 200, success: true, msg: "Order Created", order_id:order.id, amount: amount, key_id: RAZORPAY_ID_KEY, product_name: name  });
-        }else{
+          return res.json({
+            code: 200,
+            success: true,
+            msg: "Order Created",
+            order_id: order.id,
+            amount: amount,
+            key_id: process.env.RAZORPAY_ID_KEY,
+            product_name: name,
+          });
+        } else {
           return res.json({
             code: 500,
             msg: "Something went wrong !!",
@@ -124,5 +132,5 @@ module.exports = {
   getItems,
   getItem,
   addItem,
-  placeOrder
+  placeOrder,
 };
