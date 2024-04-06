@@ -12,6 +12,10 @@ const razorpayInstance = new Razorpay({
 const createUser = async (req, res) => {
   try {
     const { name, email, password, contact } = req.body;
+    const checkEmail = await User.findOne({email:emailval})
+    if(checkEmail){
+      throw new Error('Email already exists !!')
+    }
     const user = new User({ name, email, password, contact });
     await user.save();
     return res.json({
@@ -22,7 +26,7 @@ const createUser = async (req, res) => {
   } catch (error) {
     return res.json({
       code: 500,
-      msg: "Something went wrong !!",
+      msg: `Something went wrong: ${error}`,
       success: false,
     });
   }
@@ -53,7 +57,7 @@ const addItem = async (req, res) => {
   } catch (error) {
     return res.json({
       code: 500,
-      msg: "Something went wrong !!",
+      msg: `Something went wrong: ${error}`,
       success: false,
     });
   }
@@ -61,12 +65,20 @@ const addItem = async (req, res) => {
 
 const getItems = async (req, res) => {
   try {
-    const items = await item.find();
-    return res.json({ code: 200, data: items, success: true });
+    await item.find({}, { projection: { _id: 0, name: 1, price: 1, brand: 0, desc: 0, category: 0, img:1 }}).limit(10).toArray(function(err, result) {
+      if (!err){
+        return res.json({ code: 200, success: true, data: result })
+      }
+      return res.json({
+      code: 500,
+      msg: `Something went wrong !!`,
+      success: false,
+      })
+    });
   } catch (error) {
     return res.json({
       code: 500,
-      msg: "Something went wrong !!",
+      msg: `Something went wrong: ${error}`,
       success: false,
     });
   }
@@ -75,11 +87,11 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const item = await item.findById(req.params.id);
-    return res.json({ code: 200, data: item, success: true });
+    return res.json({ code: 200, success: true, data: item });
   } catch (error) {
     return res.json({
       code: 500,
-      msg: "Something went wrong !!",
+      msg: `Something went wrong: ${error}`,
       success: false,
     });
   }
@@ -111,7 +123,7 @@ const placeOrder = async (req, res) => {
         } else {
           return res.json({
             code: 500,
-            msg: "Something went wrong !!",
+            msg: `Something went wrong: ${error}`,
             success: false,
           });
         }
@@ -121,11 +133,24 @@ const placeOrder = async (req, res) => {
   } catch (error) {
     return res.json({
       code: 500,
-      msg: "Something went wrong !!",
+      msg: `Something went wrong: ${error}`,
       success: false,
     });
   }
 };
+
+const getuseritems = async (req, res) => {
+  try {
+    const items = await item.find({ uid: req.body.id });
+    return res.json({ code: 200, success: true, data: items });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
+}
 
 module.exports = {
   createUser,
@@ -133,4 +158,5 @@ module.exports = {
   getItem,
   addItem,
   placeOrder,
+  getuseritems,
 };

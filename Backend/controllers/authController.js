@@ -6,34 +6,38 @@ const loginUser = async (req, res) => {
     const error = validationResult(req);
     if (error.isEmpty()) {
       const { email, password } = req.body;
-      const user = await User.findOne({ email: email }).select('+password');
+      const user = await User.findOne({ email: email }).select("+password");
       if (user) {
-        // if(user.isVerified == false) return res.status(200).json({ success: false, data: { message: "Please verify your email." } })
-        // const isMatch = await bcrypt.compare(password, user.password);
         console.log(user.password, password);
         if (user.password === password) {
           return res.status(200).json({
+            code: 200,
+            msg: "Logged In Successfully.",
             success: true,
             data: {
-              message: "Logged In Successfully.",
-              authToken: user.generateAuthToken(),
-            //   role: user.role,
+              username: user.name,
+              userId: user._id,
             },
           });
         }
         return res
           .status(200)
-          .json({ success: false, data: { message: "Invalid Credentials." } });
+          .json({ code: 200, msg: "Invalid Credentials.", success: false });
       }
       return res
         .status(200)
-        .json({ success: false, data: { message: "User Not Found." } });
+        .json({ code: 200, msg: "User not found.", success: false });
+    }else{
+      return res
+        .status(422)
+        .json({ code: 422, msg: error.array(), success: false });
     }
-    return res
-      .status(422)
-      .json({ success: false, data: { error: error.array() } });
   } catch (e) {
-    return res.json({ success: false, data: { error: e } });
+    return res.json({
+      code: 200,
+      msg: `Something went wrong: ${e}`,
+      success: false,
+    });
   }
 };
 

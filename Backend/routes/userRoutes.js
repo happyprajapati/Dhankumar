@@ -3,7 +3,7 @@ const {loginUser} = require('../controllers/authController.js');
 const { validateRegister, validateLogin } = require('../middlewares/validator.js');
 const {getItems, getItem, addItem, createUser, placeOrder} = require('./../controllers/userController.js')
 const { itemImage } = require('../middlewares/upload.js');
-const { varifyAuthToken } = require('../middlewares/varifyAuthToken.js');
+const { varifyUser } = require('../middlewares/varifyUser.js');
 
 // Register API
 routes.post('/register', validateRegister, createUser);
@@ -21,7 +21,7 @@ routes.get("/getitems", getItems);
 routes.get("/getitem/:id", getItem);
 
 // Add item API
-routes.post("/additem", itemImage.array("itemImg"), varifyAuthToken , addItem);
+routes.post("/additem", itemImage.array("itemImg"), addItem);
 
 routes.post("/placeorder", placeOrder);
 
