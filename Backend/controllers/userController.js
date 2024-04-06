@@ -1,8 +1,16 @@
 const User = require("./../models/users.js");
 const item = require("./../models/items");
+const Razorpay = require("razorpay");
+
+// const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
+
+const razorpayInstance = new Razorpay({
+  key_id: "rzp_test_MytonBdlQQC79x",
+  key_secret: "LMyTuzcrjxYGilP394lXZxcD",
+});
 
 const createUser = async (req, res) => {
-    try {
+  try {
     const { name, email, password, contact } = req.body;
     const user = new User({ name, email, password, contact });
     await user.save();
@@ -18,16 +26,17 @@ const createUser = async (req, res) => {
       success: false,
     });
   }
-}
+};
 
 const addItem = async (req, res) => {
   try {
-    const { name, price, brand, desc, category } = req.body;
+    const { uid, name, price, brand, desc, category } = req.body;
     const photos = [];
     req.files.map(async (photo) => {
       photos.push(photo.filename);
     });
     const newItem = new item({
+      uid,
       name,
       price,
       brand,
@@ -51,16 +60,16 @@ const addItem = async (req, res) => {
 };
 
 const getItems = async (req, res) => {
-    try {
-        const items = await item.find();
-        return res.json({ code: 200, data: items, success: true });
-    } catch (error) {
-        return res.json({
-            code: 500,
-            msg: "Something went wrong !!",
-            success: false,
-          });
-    }
+  try {
+    const items = await item.find();
+    return res.json({ code: 200, data: items, success: true });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: "Something went wrong !!",
+      success: false,
+    });
+  }
 };
 
 const getItem = async (req, res) => {
@@ -74,11 +83,54 @@ const getItem = async (req, res) => {
       success: false,
     });
   }
-}
+};
+
+const placeOrder = async (req, res) => {
+  try {
+    const amount = req.body.amount * 100;
+    const { name } = req.body.name;
+    const options = {
+      amount,
+      currency: "INR",
+      receipt: "razorUser@gmail.com",
+    };
+
+    const payment = await razorpayInstance.orders.create(
+      options,
+      (err, order) => {
+        if (!err) {
+          return res.json({
+            code: 200,
+            success: true,
+            msg: "Order Created",
+            order_id: order.id,
+            amount: amount,
+            key_id: "rzp_test_MytonBdlQQC79x",
+            product_name: name,
+          });
+        } else {
+          return res.json({
+            code: 500,
+            msg: "Something went wrong !!",
+            success: false,
+          });
+        }
+      }
+    );
+    return res.json({ code: 200, data: payment, success: true });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: "Something went wrong !!",
+      success: false,
+    });
+  }
+};
 
 module.exports = {
   createUser,
   getItems,
   getItem,
   addItem,
+  placeOrder,
 };
