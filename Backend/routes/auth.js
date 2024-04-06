@@ -3,6 +3,6 @@ const {validateLogin} = require('./../middlewares/validator');
 
 const routes = require('express').Router();
 
-routes.get('/login', validateLogin, loginUser);
+routes.post('/login', validateLogin, loginUser);
 
 module.exports = routes;

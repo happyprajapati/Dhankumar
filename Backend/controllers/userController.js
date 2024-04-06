@@ -63,8 +63,22 @@ const getItems = async (req, res) => {
     }
 };
 
+const getItem = async (req, res) => {
+  try {
+    const item = await item.findById(req.params.id);
+    return res.json({ code: 200, data: item, success: true });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: "Something went wrong !!",
+      success: false,
+    });
+  }
+}
+
 module.exports = {
   createUser,
   getItems,
+  getItem,
   addItem,
 };

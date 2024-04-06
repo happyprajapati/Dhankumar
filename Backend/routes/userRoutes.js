@@ -1,7 +1,7 @@
 const routes = require('express').Router();
 const {loginUser} = require('../controllers/authController.js');
 const { validateRegister, validateLogin } = require('../middlewares/validator.js');
-const {getItems, addItem, createUser} = require('./../controllers/userController.js')
+const {getItems, getItem, addItem, createUser} = require('./../controllers/userController.js')
 const { itemImage } = require('../middlewares/upload.js');
 const { varifyAuthToken } = require('../middlewares/varifyAuthToken.js');
 
@@ -15,10 +15,13 @@ routes.post('/login', validateLogin, loginUser);
 // routes.post("/get-otp", getOtp);
 
 // Get items API
-routes.get("/", getItems);
+routes.get("/getitems", getItems);
+
+// Get item API
+routes.get("/getitem/*", getItem);
 
 // Add item API
-routes.get("/additem", itemImage.array("itemImg"), varifyAuthToken , addItem);
+routes.post("/additem", itemImage.array("itemImg"), varifyAuthToken , addItem);
 
 // routes.post("/send-token", sentResetPassToken);
 
