@@ -10,6 +10,7 @@ const loginUser = async (req, res) => {
       if (user) {
         // if(user.isVerified == false) return res.status(200).json({ success: false, data: { message: "Please verify your email." } })
         // const isMatch = await bcrypt.compare(password, user.password);
+        console.log(user.password, password);
         if (user.password === password) {
           return res.status(200).json({
             success: true,

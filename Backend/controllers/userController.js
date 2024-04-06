@@ -124,4 +124,5 @@ module.exports = {
   getItems,
   getItem,
   addItem,
+  placeOrder
 };
