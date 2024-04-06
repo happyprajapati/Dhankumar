@@ -30,9 +30,16 @@ routes.get("/getitems", getItems);
 routes.get("/getitem/:id", getItem);
 
 // Add item API
-routes.post("/additem", itemImage.array("itemImg"), addItem);
+routes.post("/additem", itemImage.any("itemImg"), addItem);
 
+// place order API
 routes.post("/placeorder", placeOrder);
+
+// Get user item API
+routes.get("/getuseritems", getUserItems);
+
+// Get user item API
+routes.get("/getuseritems", getUserItems);
 
 // routes.post("/send-token", sentResetPassToken);
 

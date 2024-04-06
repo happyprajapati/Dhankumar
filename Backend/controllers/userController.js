@@ -1,5 +1,7 @@
 const User = require("./../models/users.js");
-const item = require("./../models/items");
+const Item = require("./../models/items");
+const Order = require("./../models/orders");
+const Address = require("./../models/address");
 const Razorpay = require("razorpay");
 
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
@@ -33,84 +35,68 @@ const createUser = async (req, res) => {
 };
 
 const addItem = async (req, res) => {
-	try {
-		const { uid, name, price, brand, desc, category } = req.body;
-		const photos = [];
-		req.files.map(async (photo) => {
-			photos.push(photo.filename);
-		});
-		const newItem = new item({
-			uid,
-			name,
-			price,
-			brand,
-			desc,
-			category,
-			img: photos,
-		});
-		await newItem.save();
-		return res.json({
-			code: 200,
-			msg: "Item added successfully !!",
-			success: true,
-		});
-	} catch (error) {
-		return res.json({
-			code: 500,
-			msg: `Something went wrong: ${error}`,
-			success: false,
-		});
-	}
+  try {
+    const { uid, name, price, brand, desc, category } = req.body;
+    const photos = [];
+    req.files.map(async (photo) => {
+      photos.push(photo.filename);
+    });
+    const newItem = new Item({
+      uid,
+      name,
+      price,
+      brand,
+      desc,
+      category,
+      img: photos,
+    });
+    await newItem.save();
+    return res.json({
+      code: 200,
+      msg: "Item added successfully !!",
+      success: true,
+    });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
 };
 
 const getItems = async (req, res) => {
-	try {
-		await item
-			.find(
-				{},
-				{
-					projection: {
-						_id: 0,
-						name: 1,
-						price: 1,
-						brand: 0,
-						desc: 0,
-						category: 0,
-						img: 1,
-					},
-				}
-			)
-			.limit(10)
-			.toArray(function (err, result) {
-				if (!err) {
-					return res.json({ code: 200, success: true, data: result });
-				}
-				return res.json({
-					code: 500,
-					msg: `Something went wrong !!`,
-					success: false,
-				});
-			});
-	} catch (error) {
-		return res.json({
-			code: 500,
-			msg: `Something went wrong: ${error}`,
-			success: false,
-		});
-	}
+  try {
+    await Item.find({}, { projection: { _id: 0, name: 1, price: 1, brand: 0, desc: 0, category: 0, img:1 }}).limit(10).toArray(function(err, result) {
+      if (!err){
+        return res.json({ code: 200, success: true, data: result })
+      }
+      return res.json({
+      code: 500,
+      msg: `Something went wrong !!`,
+      success: false,
+      })
+    });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
 };
 
 const getItem = async (req, res) => {
-	try {
-		const item = await item.findById(req.params.id);
-		return res.json({ code: 200, success: true, data: item });
-	} catch (error) {
-		return res.json({
-			code: 500,
-			msg: `Something went wrong: ${error}`,
-			success: false,
-		});
-	}
+  try {
+    const item = await Item.findById(req.params.id);
+    return res.json({ code: 200, success: true, data: item });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
 };
 
 const placeOrder = async (req, res) => {
@@ -155,6 +141,7 @@ const placeOrder = async (req, res) => {
 	}
 };
 
+<<<<<<< HEAD
 const getuseritems = async (req, res) => {
 	try {
 		const items = await item.find({ uid: req.body.id });
@@ -167,12 +154,58 @@ const getuseritems = async (req, res) => {
 		});
 	}
 };
+=======
+const getUserItems = async (req, res) => {
+  try {
+    const items = await Item.find({ uid: req.body.id });
+    return res.json({ code: 200, success: true, data: items });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
+}
+>>>>>>> 9892cf8d314e56728496492d39f76284e87eefb5
+
+const getUserSellItems = async (req, res) => {
+  try {
+    const orders = await Order.find({ itemid: req.body.id });
+    var sellProducts = [];
+    orders.map(async (order) => { 
+      var addess = await Address.find({ uid: order.userid });
+      var user = await User.findById(order.userid);
+      sellProducts.push({
+        user: user.name,
+        address: addess,
+      })
+    })
+    return res.json({ code: 200, success: true, data: sellProducts });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
+}
 
 module.exports = {
+<<<<<<< HEAD
 	createUser,
 	getItems,
 	getItem,
 	addItem,
 	placeOrder,
 	getuseritems,
+=======
+  createUser,
+  getItems,
+  getItem,
+  addItem,
+  placeOrder,
+  getUserItems,
+  getUserSellItems
+>>>>>>> 9892cf8d314e56728496492d39f76284e87eefb5
 };

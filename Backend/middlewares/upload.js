@@ -1,5 +1,5 @@
 const multer = require("multer");
-const fs = require("fs");
+// const fs = require("fs");
 const filepath = require("path");
 
 const filter = (req, file, cb) => {
@@ -24,8 +24,8 @@ const limit = (req, file, cb) => {
 
 const itemimgstorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    checkDir("itemImage")
-    cb(null, filepath.join(__dirname, "../public/images/itemImage"));
+    // checkDir("itemImage")
+    cb(null, filepath.join(__dirname, "../public/images/itemImages"));
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
