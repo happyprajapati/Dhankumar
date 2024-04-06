@@ -1,0 +1,38 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+/* .container .row .form-group{
+    border:1px solid rebeccapurple;
+} */
+.container .row .form-group i{
+    /* border:1px solid greenyellow; */
+    position: absolute;
+    right:16%;
+    margin-top: -2%;
+    visibility: hidden; 
+}
+.container .row .form-group small{
+    color: red;
+    visibility: hidden;
+}
+.container .row .form-group.error1 i.fa-exclamation-circle{
+    visibility: visible;
+    color: #e74c3c;
+}
+.container .row .form-group.success i.fa-check-circle{
+    visibility: visible;
+    color: #2ecc2e;
+}
+.container .row .form-group.success input{
+    border-color: #2ecc2e;
+    visibility: visible;
+}
+.container .row .form-group.error1 input{
+    border-color: #e74c3c;
+     visibility: visible;
+ }
+.container .row .form-group.error1 small{
+    visibility: visible;
+}
