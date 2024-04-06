@@ -1,5 +1,7 @@
 const User = require("./../models/users.js");
-const item = require("./../models/items");
+const Item = require("./../models/items");
+const Order = require("./../models/orders");
+const Address = require("./../models/address");
 const Razorpay = require("razorpay");
 
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
@@ -39,7 +41,7 @@ const addItem = async (req, res) => {
     req.files.map(async (photo) => {
       photos.push(photo.filename);
     });
-    const newItem = new item({
+    const newItem = new Item({
       uid,
       name,
       price,
@@ -65,7 +67,7 @@ const addItem = async (req, res) => {
 
 const getItems = async (req, res) => {
   try {
-    await item.find({}, { projection: { _id: 0, name: 1, price: 1, brand: 0, desc: 0, category: 0, img:1 }}).limit(10).toArray(function(err, result) {
+    await Item.find({}, { projection: { _id: 0, name: 1, price: 1, brand: 0, desc: 0, category: 0, img:1 }}).limit(10).toArray(function(err, result) {
       if (!err){
         return res.json({ code: 200, success: true, data: result })
       }
@@ -86,7 +88,7 @@ const getItems = async (req, res) => {
 
 const getItem = async (req, res) => {
   try {
-    const item = await item.findById(req.params.id);
+    const item = await Item.findById(req.params.id);
     return res.json({ code: 200, success: true, data: item });
   } catch (error) {
     return res.json({
@@ -139,10 +141,32 @@ const placeOrder = async (req, res) => {
   }
 };
 
-const getuseritems = async (req, res) => {
+const getUserItems = async (req, res) => {
   try {
-    const items = await item.find({ uid: req.body.id });
+    const items = await Item.find({ uid: req.body.id });
     return res.json({ code: 200, success: true, data: items });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
+}
+
+const getUserSellItems = async (req, res) => {
+  try {
+    const orders = await Order.find({ itemid: req.body.id });
+    var sellProducts = [];
+    orders.map(async (order) => { 
+      var addess = await Address.find({ uid: order.userid });
+      var user = await User.findById(order.userid);
+      sellProducts.push({
+        user: user.name,
+        address: addess,
+      })
+    })
+    return res.json({ code: 200, success: true, data: sellProducts });
   } catch (error) {
     return res.json({
       code: 500,
@@ -158,5 +182,6 @@ module.exports = {
   getItem,
   addItem,
   placeOrder,
-  getuseritems,
+  getUserItems,
+  getUserSellItems
 };
