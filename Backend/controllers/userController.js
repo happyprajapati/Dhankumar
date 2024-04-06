@@ -2,11 +2,11 @@ const User = require("./../models/users.js");
 const item = require("./../models/items");
 const Razorpay = require("razorpay");
 
-const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
+// const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
 
 const razorpayInstance = new Razorpay({
-  key_id: RAZORPAY_ID_KEY,
-  key_secret: RAZORPAY_SECRET_KEY,
+  key_id: "rzp_test_MytonBdlQQC79x",
+  key_secret: "LMyTuzcrjxYGilP394lXZxcD",
 });
 
 const createUser = async (req, res) => {
@@ -105,7 +105,7 @@ const placeOrder = async (req, res) => {
             msg: "Order Created",
             order_id: order.id,
             amount: amount,
-            key_id: process.env.RAZORPAY_ID_KEY,
+            key_id: "rzp_test_MytonBdlQQC79x",
             product_name: name,
           });
         } else {
