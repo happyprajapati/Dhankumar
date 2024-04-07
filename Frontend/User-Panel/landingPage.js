@@ -3,22 +3,18 @@ let div = document.getElementById("itemsCartDiv");
 const whead = document.getElementById("wn__header");
 const mhead = document.getElementById("mb__header");
 
-const landingP = async () => {
-	let options1 = {
-		method: "GET",
-		// body: JSON.stringify({
-		// 	// email: Email,
-		// 	// password: pass,
-		// }),
-	};
+// const landingP = async () => {
+// 	let options1 = {
+// 		method: "GET",
+// 	};
 
-	let p = await fetch("https://dhankumar.onrender.com/getitems", options1);
-	let response = await p.json();
-	return response;
-};
+// 	let p = await fetch("https://dhankumar.onrender.com/getitems", options1);
+// 	let response = await p.json();
+// 	return response;
+// };
 
 const mainFuncLandingP = async () => {
-	console.log(localStorage.getItem("uid"));
+	// console.log(localStorage.getItem("uid"));
 	if(localStorage.getItem("uid") == null){
 		var headerw = `<div class="container-fluid">
 		<div class="row">
@@ -122,10 +118,13 @@ const mainFuncLandingP = async () => {
 	mhead.innerHTML = headerm;
 	}
 
-	let landItems = await landingP();
+	let p = await fetch("https://dhankumar.onrender.com/getitems", {method: "GET"});
+	let response = await p.json();
+	// return response;
 
 	// console.log(landItems);
-	items = landItems.data;
+	items = response.data;
+	console.log(response.data)
 
 	if (items != null) {
 		for (let i = 0; i < items.length; i++) {

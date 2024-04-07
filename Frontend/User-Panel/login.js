@@ -20,9 +20,9 @@ document.getElementById("login").addEventListener("click", async function(e){
 	let response = await p.json();
 	// return response;
 	// console.log("user registerd...");
-	// console.log(response);
-	if(response.code == 200){
-		localStorage.setItem("uid", response.data.userId);
+	console.log(response);
+	if(response.success){
+		localStorage.setItem("uid", response.data.userid);
 		window.location.href = "index.html";
 	}else{
 		alert(response.msg);

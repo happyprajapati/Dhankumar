@@ -22,7 +22,7 @@ document.getElementById("register").addEventListener("click", async function(e){
 	let response = await p.json();
 	// return response;
 	// console.log("user registerd...");
-	if(response.code == 200){
+	if(response.success){
 		window.location.href = "login.html";
 	}else{
 		alert(response.msg);

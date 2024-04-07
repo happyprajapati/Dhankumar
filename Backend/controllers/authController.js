@@ -16,7 +16,7 @@ const loginUser = async (req, res) => {
             success: true,
             data: {
               username: user.name,
-              userId: user._id,
+              userid: user._id,
             },
           });
         }
