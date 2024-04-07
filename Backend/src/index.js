@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
+app.use("/images", express.static("./../public/images"));
 app.use(auth);
 app.use(user);
 app.use(admin);
