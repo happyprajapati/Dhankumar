@@ -615,7 +615,7 @@
 <script>
 	const loadData = async () =>{
 		let options = {
-		method: "GET",
+		method: "POST",
 		body: JSON.stringify({
 			uid: localStorage.getItem('uid')
 		}),
@@ -631,10 +631,10 @@
 						<td>${dt.price}</td>
 						<td>${dt.desc}</td>
 						<td><img src="./../../Backend/public/images/itemImages/${dt.img[0].name}"</td>
-						<td><button type="button" class="btn btn-primary" onclick="window.open('view-product.html')">View Details</button></td>
+						<td><button type="button" class="btn btn-primary" onclick="window.open('view-product.html/${dt._id}')">View Details</button></td>
 					  </tr>`;
 	})
-	const dataTable = document.getElementById("");
+	const dataTable = document.getElementById("dataTable");
 	dataTable.innerHTML(data);
 	}
 </script>

@@ -6,6 +6,17 @@ document.getElementById("add").addEventListener("click", async function(e){
   let category = document.getElementById("inlineFormCustomSelect");
   let productDiscr = document.getElementById("exampleFormControlTextarea1");
   let img = document.getElementById("itemImage").files;
+
+  let form = document.getElementById("addItem");
+  let formdata = new FormData();
+  formdata.append("uid", localStorage.getItem('uid'));
+  formdata.append("name", productName.value);
+  formdata.append("price", productPrice.value);
+  formdata.append("brand", modelNo.value);
+  formdata.append("desc", category.value);
+  formdata.append("category", productDiscr.value);
+  formdata.append("img", img);
+
   // console.log(img[1]);
   const imgs = [];
 
@@ -19,15 +30,16 @@ document.getElementById("add").addEventListener("click", async function(e){
 
 let options = {
   method: "POST",
-  body: JSON.stringify({
-    uid: localStorage.getItem('uid'),
-    name: productName.value,
-    price: productPrice.value,
-    brand: modelNo.value,
-    desc: category.value,
-    category: productDiscr.value,
-    img: imgs,
-  }),
+  // body: JSON.stringify({
+  //   uid: localStorage.getItem('uid'),
+  //   name: productName.value,
+  //   price: productPrice.value,
+  //   brand: modelNo.value,
+  //   desc: category.value,
+  //   category: productDiscr.value,
+  //   img: imgs,
+  // }),
+  body: formdata,
 };
 
 let p = await fetch("https://dhankumar.onrender.com/additem", options);

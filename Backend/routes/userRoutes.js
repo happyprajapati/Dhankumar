@@ -30,7 +30,7 @@ routes.post("/placeorder", placeOrder);
 routes.post("/varify", paymentVarify);
 
 // Get user item API
-routes.get("/getuseritems", getUserItems);
+routes.post("/getuseritems", getUserItems);
 
 // Get user item API
 routes.get("/getuseritems", getUserItems);
