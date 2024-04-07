@@ -245,5 +245,6 @@ module.exports = {
   placeOrder,
   paymentVarify,
   getUserItems,
-  getUserSellItems
+  getUserSellItems,
+  getItemSell
 };
