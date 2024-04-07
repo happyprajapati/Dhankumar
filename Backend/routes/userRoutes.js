@@ -21,7 +21,7 @@ routes.get("/getitems", getItems);
 routes.get("/getitem/:id", getItem);
 
 // Add item API
-routes.post("/additem", itemImage.any("itemImg"), addItem);
+routes.post("/additem", itemImage.array("img"), addItem);
 
 // place order API
 routes.post("/placeorder", placeOrder);

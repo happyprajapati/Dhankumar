@@ -6,11 +6,12 @@ document.getElementById("add").addEventListener("click", async function(e){
   let category = document.getElementById("inlineFormCustomSelect");
   let productDiscr = document.getElementById("exampleFormControlTextarea1");
   let img = document.getElementById("itemImage").files;
-//   const imgs = [];
+  // console.log(img[1]);
+  const imgs = [];
 
-//   for (var i = 0; i < files.length; i++) {
-//     imgs.push(files[i].name);
-//   }
+  for (var i = 0; i < img.length; i++) {
+    imgs.push(img[i]);
+  }
 
 let options = {
   method: "POST",
@@ -21,7 +22,7 @@ let options = {
     brand: modelNo.value,
     desc: category.value,
     category: productDiscr.value,
-    img,
+    img: imgs,
   }),
 };
 

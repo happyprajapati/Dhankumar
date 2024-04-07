@@ -7,7 +7,7 @@ const itemSchema = mongoose.Schema({
   brand: String ,
   desc: String ,
   category: String ,
-  img: Array,
+  img: [],
 },
 {timestamps: true}
 );
