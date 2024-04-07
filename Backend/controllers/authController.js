@@ -3,8 +3,8 @@ const { validationResult } = require("express-validator");
 
 const loginUser = async (req, res) => {
   try {
-    const error = validationResult(req);
-    if (error.isEmpty()) {
+    // const error = validationResult(req);
+    // if (error.isEmpty()) {
       const { email, password } = req.body;
       const user = await User.findOne({ email: email }).select("+password");
       if (user) {
@@ -27,11 +27,11 @@ const loginUser = async (req, res) => {
       return res
         .status(200)
         .json({ code: 200, msg: "User not found.", success: false });
-    }else{
-      return res
-        .status(422)
-        .json({ code: 422, msg: error.array(), success: false });
-    }
+    // }else{
+    //   return res
+    //     .status(422)
+    //     .json({ code: 422, msg: error.array(), success: false });
+    // }
   } catch (e) {
     return res.json({
       code: 200,
