@@ -15,6 +15,7 @@ const razorpayInstance = new Razorpay({
 const createUser = async (req, res) => {
 	try {
 		const { name, email, password, contact } = req.body;
+    console.log(req.body)
 		const checkEmail = await User.findOne({email : email});
     console.log(checkEmail)
 		if (checkEmail) {
