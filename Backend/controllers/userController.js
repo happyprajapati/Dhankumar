@@ -8,31 +8,31 @@ const Razorpay = require("razorpay");
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
 
 const razorpayInstance = new Razorpay({
-  key_id: "rzp_test_MytonBdlQQC79x",
-  key_secret: "LMyTuzcrjxYGilP394lXZxcD",
+	key_id: "rzp_test_MytonBdlQQC79x",
+	key_secret: "LMyTuzcrjxYGilP394lXZxcD",
 });
 
 const createUser = async (req, res) => {
-  try {
-    const { name, email, password, contact } = req.body;
-    const checkEmail = await User.findOne({email:emailval})
-    if(checkEmail){
-      throw new Error('Email already exists !!')
-    }
-    const user = new User({ name, email, password, contact });
-    await user.save();
-    return res.json({
-      code: 200,
-      msg: "User created successfully !!",
-      success: true,
-    });
-  } catch (error) {
-    return res.json({
-      code: 500,
-      msg: `Something went wrong: ${error}`,
-      success: false,
-    });
-  }
+	try {
+		const { name, email, password, contact } = req.body;
+		const checkEmail = await User.findOne({ email: emailval });
+		if (checkEmail) {
+			throw new Error("Email already exists !!");
+		}
+		const user = new User({ name, email, password, contact });
+		await user.save();
+		return res.json({
+			code: 200,
+			msg: "User created successfully !!",
+			success: true,
+		});
+	} catch (error) {
+		return res.json({
+			code: 500,
+			msg: `Something went wrong: ${error}`,
+			success: false,
+		});
+	}
 };
 
 const addItem = async (req, res) => {
@@ -175,6 +175,7 @@ const getUserItems = async (req, res) => {
     });
   }
 }
+>>>>>>> 9892cf8d314e56728496492d39f76284e87eefb5
 
 const getUserSellItems = async (req, res) => {
   try {
@@ -199,6 +200,14 @@ const getUserSellItems = async (req, res) => {
 }
 
 module.exports = {
+<<<<<<< HEAD
+	createUser,
+	getItems,
+	getItem,
+	addItem,
+	placeOrder,
+	getuseritems,
+=======
   createUser,
   getItems,
   getItem,
@@ -207,4 +216,5 @@ module.exports = {
   paymentVarify,
   getUserItems,
   getUserSellItems
+>>>>>>> 9892cf8d314e56728496492d39f76284e87eefb5
 };

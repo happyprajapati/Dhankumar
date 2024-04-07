@@ -6,10 +6,10 @@ const { itemImage } = require('../middlewares/upload.js');
 const { varifyUser } = require('../middlewares/varifyUser.js');
 
 // Register API
-routes.post('/register', validateRegister, createUser);
+routes.post("/register", validateRegister, createUser);
 
 // Login API
-routes.post('/login', validateLogin, loginUser);
+routes.post("/login", validateLogin, loginUser);
 
 // Reset Password OTP API
 // routes.post("/get-otp", getOtp);
