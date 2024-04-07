@@ -2,6 +2,7 @@ const User = require("./../models/users.js");
 const Item = require("./../models/items");
 const Order = require("./../models/orders");
 const Address = require("./../models/address");
+const crypto = require("crypto");
 const Razorpay = require("razorpay");
 
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
@@ -102,11 +103,12 @@ const getItem = async (req, res) => {
 const placeOrder = async (req, res) => {
   try {
     const amount = req.body.amount * 100;
-    const { name } = req.body.name;
+    const { name, uid } = req.body;
+    const user = await User.findById({_id:uid});
     const options = {
       amount,
       currency: "INR",
-      receipt: "razorUser@gmail.com",
+      receipt: crypto.randomBytes(10).toString("hex"),
     };
 
     const payment = await razorpayInstance.orders.create(
@@ -121,11 +123,13 @@ const placeOrder = async (req, res) => {
             amount: amount,
             key_id: "rzp_test_MytonBdlQQC79x",
             product_name: name,
+            email: user.email,
+            contact: user.contact,
           });
         } else {
           return res.json({
             code: 500,
-            msg: `Something went wrong: ${error}`,
+            msg: `Something went wrong !!`,
             success: false,
           });
         }
@@ -140,6 +144,24 @@ const placeOrder = async (req, res) => {
     });
   }
 };
+
+const paymentVarify = async (req,res) => {
+  try {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+    const sign = razorpay_order_id + '|' + razorpay_payment_id;
+    const exprctedSign = crypto.createHmac('sha256', 'rzp_test_MytonBdlQQC79x').update(sign.toString()).digest('hex');
+    if (razorpay_signature === exprctedSign) {  
+      return res.json({ code: 200, success: true, msg: "Payment Successfull" });
+    }
+    return res.json({ code: 500, success: false, msg: "Invalid signature sent!" });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
+}
 
 const getUserItems = async (req, res) => {
   try {
@@ -182,6 +204,7 @@ module.exports = {
   getItem,
   addItem,
   placeOrder,
+  paymentVarify,
   getUserItems,
   getUserSellItems
 };
