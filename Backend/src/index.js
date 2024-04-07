@@ -2,6 +2,7 @@ require('./connect');
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const path = require("path");
 const port = process.env.PORT;
 const cors = require('cors');
 const auth = require('./../routes/auth');
