@@ -16,16 +16,18 @@ const createUser = async (req, res) => {
 	try {
 		const { name, email, password, contact } = req.body;
 		const checkEmail = await User.findOne({email : email});
-		if (checkEmail == null) {
+    console.log(checkEmail)
+		if (checkEmail != null) {
 			throw new Error("Email already exists !!");
-		}
-		const user = new User({ name, email, password, contact });
-		await user.save();
-		return res.json({
-			code: 200,
-			msg: "User created successfully !!",
-			success: true,
-		});
+		}else{
+      const user = new User({ name, email, password, contact });
+      await user.save();
+      return res.json({
+        code: 200,
+        msg: "User created successfully !!",
+        success: true,
+      });
+    }
 	} catch (error) {
 		return res.json({
 			code: 500,

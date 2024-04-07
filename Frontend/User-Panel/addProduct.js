@@ -15,7 +15,7 @@ document.getElementById("add").addEventListener("click", async function(e){
 let options = {
   method: "POST",
   body: JSON.stringify({
-    uid: "id",
+    uid: localStorage.getItem('uid'),
     name: productName.value,
     price: productPrice.value,
     brand: modelNo.value,

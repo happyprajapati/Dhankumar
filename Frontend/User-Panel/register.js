@@ -6,7 +6,7 @@ document.getElementById("register").addEventListener("click", async function(e){
 	let email = document.getElementById("exampleInputEmail");
 	let pass = document.getElementById("exampleInputPassword");
 
-	console.log(email.value);
+	// console.log(email.value);
 
 	let options = {
 		method: "POST",
