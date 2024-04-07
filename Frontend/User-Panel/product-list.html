@@ -625,12 +625,12 @@
 	let response = await p.json();
 	let data = "";
 	response.data.map((dt) =>{
-		let data += ` <tr>
+		data += ` <tr>
 						<th scope="row">1</th>
-						<td>Tshirt</td>
-						<td>350</td>
-						<td>img</td>
-						<td>This is tshirt</td>
+						<td>${dt.name}</td>
+						<td>${dt.price}</td>
+						<td>${dt.desc}</td>
+						<td><img src="./../../Backend/public/images/itemImages/${dt.img[0].name}"</td>
 						<td><button type="button" class="btn btn-primary" onclick="window.open('view-product.html')">View Details</button></td>
 					  </tr>`;
 	})

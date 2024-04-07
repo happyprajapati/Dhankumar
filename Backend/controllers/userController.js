@@ -41,7 +41,7 @@ const createUser = async (req, res) => {
 const addItem = async (req, res) => {
   try {
     const { uid, name, price, brand, desc, category } = req.body;
-    console.log(req.files)
+    // console.log(req.files)
     const photos = [];
     req.files.map(async (photo) => {
       photos.push(photo.filename);
