@@ -141,20 +141,6 @@ const placeOrder = async (req, res) => {
 	}
 };
 
-<<<<<<< HEAD
-const getuseritems = async (req, res) => {
-	try {
-		const items = await item.find({ uid: req.body.id });
-		return res.json({ code: 200, success: true, data: items });
-	} catch (error) {
-		return res.json({
-			code: 500,
-			msg: `Something went wrong: ${error}`,
-			success: false,
-		});
-	}
-};
-=======
 const getUserItems = async (req, res) => {
   try {
     const items = await Item.find({ uid: req.body.id });
@@ -167,7 +153,6 @@ const getUserItems = async (req, res) => {
     });
   }
 }
->>>>>>> 9892cf8d314e56728496492d39f76284e87eefb5
 
 const getUserSellItems = async (req, res) => {
   try {
