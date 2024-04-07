@@ -71,7 +71,7 @@ const addItem = async (req, res) => {
 
 const getItems = async (req, res) => {
   try {
-    await Item.find({}, { projection: { _id: 0, name: 1, price: 1, brand: 0, desc: 0, category: 0, img:1 }}).limit(10).toArray(function(err, result) {
+    await Item.find({}, { projection: { _id: 1, name: 1, price: 1, brand: 0, desc: 0, category: 0, img:1 }}).limit(8).toArray(function(err, result) {
       if (!err){
         return res.json({ code: 200, success: true, data: result })
       }

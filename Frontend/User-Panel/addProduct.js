@@ -5,7 +5,7 @@ document.getElementById("add").addEventListener("click", async function(e){
   let modelNo = document.getElementById("exampleInProductModlNo");
   let category = document.getElementById("inlineFormCustomSelect");
   let productDiscr = document.getElementById("exampleFormControlTextarea1");
-//   let img = document.getElementById("itemImage").files;
+  let img = document.getElementById("itemImage").files;
 //   const imgs = [];
 
 //   for (var i = 0; i < files.length; i++) {
@@ -21,6 +21,7 @@ let options = {
     brand: modelNo.value,
     desc: category.value,
     category: productDiscr.value,
+    img,
   }),
 };
 
