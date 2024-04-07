@@ -8,7 +8,7 @@ const loginUser = async (req, res) => {
       const { email, password } = req.body;
       const user = await User.findOne({ email: email }).select("+password");
       if (user) {
-        console.log(user.password, password);
+        // console.log(user.password, password);
         if (user.password === password) {
           return res.status(200).json({
             code: 200,

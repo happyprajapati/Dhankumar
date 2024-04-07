@@ -175,7 +175,6 @@ const getUserItems = async (req, res) => {
     });
   }
 }
->>>>>>> 9892cf8d314e56728496492d39f76284e87eefb5
 
 const getUserSellItems = async (req, res) => {
   try {
@@ -200,14 +199,6 @@ const getUserSellItems = async (req, res) => {
 }
 
 module.exports = {
-<<<<<<< HEAD
-	createUser,
-	getItems,
-	getItem,
-	addItem,
-	placeOrder,
-	getuseritems,
-=======
   createUser,
   getItems,
   getItem,
@@ -216,5 +207,4 @@ module.exports = {
   paymentVarify,
   getUserItems,
   getUserSellItems
->>>>>>> 9892cf8d314e56728496492d39f76284e87eefb5
 };
