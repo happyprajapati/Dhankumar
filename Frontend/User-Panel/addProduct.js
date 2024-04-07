@@ -1,29 +1,5 @@
-const addProduct = async (
-  productName,
-  productPrice,
-  modelNo,
-  category,
-  productDiscr,
-//   img
-) => {
-  let options = {
-    method: "POST",
-    body: JSON.stringify({
-      uid: "id",
-      name: productName.value,
-      price: productPrice.value,
-      brand: modelNo.value,
-      desc: category.value,
-      category: productDiscr.value,
-    }),
-  };
-
-  let p = await fetch("https://dhankumar.onrender.com/additem", options);
-  let response = await p.json();
-  return response;
-};
-
-const mainFuncaddProduct = async () => {
+document.getElementById("add").addEventListener("click", async function(e){
+	e.preventDefault()
   let productName = document.getElementById("exampleInputProdName");
   let productPrice = document.getElementById("exampleInputProductPrice");
   let modelNo = document.getElementById("exampleInProductModlNo");
@@ -36,16 +12,25 @@ const mainFuncaddProduct = async () => {
 //     imgs.push(files[i].name);
 //   }
 
-  let addPrdct = await addProduct(
-    productName,
-    productPrice,
-    modelNo,
-    category,
-    productDiscr,
-    imgs
-  );
-
-  console.log(addPrdct);
-
-  window.location.href("index.html");
+let options = {
+  method: "POST",
+  body: JSON.stringify({
+    uid: "id",
+    name: productName.value,
+    price: productPrice.value,
+    brand: modelNo.value,
+    desc: category.value,
+    category: productDiscr.value,
+  }),
 };
+
+let p = await fetch("https://dhankumar.onrender.com/additem", options);
+let response = await p.json();
+// return response;
+if(response.code == 200){
+  alert(response.msg);
+  window.location.href = "index.html";
+}else{
+  alert(response.msg);
+}
+});
