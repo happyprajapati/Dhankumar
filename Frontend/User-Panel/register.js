@@ -3,16 +3,16 @@ document.getElementById("register").addEventListener("click", async function(e){
 	e.preventDefault()
 	let firstName = document.getElementById("exampleFirstName");
 	let contact = document.getElementById("contact");
-	let Email = document.getElementById("exampleInputEmail");
-	let pass = document.getElementById("exampleRepeatPassword");
+	let email = document.getElementById("exampleInputEmail");
+	let pass = document.getElementById("exampleInputPassword");
 
-	// console.log(firstName.value);
+	console.log(email.value);
 
 	let options = {
 		method: "POST",
 		body: JSON.stringify({
 			name: firstName.value,
-			email: Email.value,
+			email: email.value,
 			password: pass.value,
 			contact: contact.value,
 		}),

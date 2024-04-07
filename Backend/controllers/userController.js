@@ -15,7 +15,7 @@ const razorpayInstance = new Razorpay({
 const createUser = async (req, res) => {
 	try {
 		const { name, email, password, contact } = req.body;
-		const checkEmail = await User.findOne({ email: emailval });
+		const checkEmail = await User.findOne(email);
 		if (checkEmail) {
 			throw new Error("Email already exists !!");
 		}
