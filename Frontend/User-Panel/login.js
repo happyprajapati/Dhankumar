@@ -1,19 +1,3 @@
-const login = async (Email, pass) => {
-	// console.log(Email);
-	// console.log(pass);
-	let options1 = {
-		method: "POST",
-		body: JSON.stringify({
-			email: Email,
-			password: pass,
-		}),
-	};
-
-	let p = await fetch("https://dhankumar.onrender.com/login", options1);
-	let response = await p.json();
-	return response;
-};
-
 document.getElementById("login").addEventListener("click", async function(e){
 	e.preventDefault()
 
@@ -36,5 +20,11 @@ document.getElementById("login").addEventListener("click", async function(e){
 	let response = await p.json();
 	// return response;
 	// console.log("user registerd...");
-	console.log(response);
+	// console.log(response);
+	if(response.code == 200){
+		localStorage.setItem("uid", response.data.userId);
+		window.location.href = "index.html";
+	}else{
+		alert(response.msg);
+	}
 });
