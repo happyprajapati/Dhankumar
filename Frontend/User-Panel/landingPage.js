@@ -19,7 +19,7 @@ const landingP = async () => {
 
 const mainFuncLandingP = async () => {
 	console.log(localStorage.getItem("uid"));
-	if(localStorage.getItem("uid") != null){
+	if(localStorage.getItem("uid") == null){
 		var headerw = `<div class="container-fluid">
 		<div class="row">
 		<div class="col-md-6 col-sm-6 col-6 col-lg-2">
@@ -33,7 +33,8 @@ const mainFuncLandingP = async () => {
 		<nav class="mainmenu__nav">
 			<ul class="meninmenu d-flex justify-content-start">
 				<li class="drop with--one--item"><a href="index.html">Home</a></li>
-				<li class="drop"><a href="about.html">About</a>
+				<li class="drop"><a href="about.html">About Us</a>
+				<li class="drop"><a href="contact.html">Contact Us</a>
 				<li class="drop"><a href="login.html">Login</a>
 				<li class="drop"><a href="register.html">Register</a>
 			</ul>
@@ -73,9 +74,10 @@ const mainFuncLandingP = async () => {
 		<nav class="mainmenu__nav">
 			<ul class="meninmenu d-flex justify-content-start">
 				<li class="drop with--one--item"><a href="index.html">Home</a></li>
-				<li class="drop"><a href="about.html">About</a>
-				<li class="drop"><a href="login.html">Login</a>
-				<li class="drop"><a href="register.html">Register</a>
+				<li class="drop"><a href="about.html">About Us</a>
+				<li class="drop"><a href="contact.html">Contact Us</a>
+				<li class="drop"><a href="product-list.html">My Product</a>
+				<li class="drop"><a href="register.html">My Orders</a>
 			</ul>
 		</nav>
 	</div>

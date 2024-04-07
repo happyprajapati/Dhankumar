@@ -34,7 +34,7 @@
 	<script src="js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
 
-<body>
+<body onload="ckeckUser()">
 	<!--[if lte IE 9]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 	<![endif]-->
@@ -441,7 +441,7 @@
 		<!-- End breadcrumb area -->
 		<!-- cart-main-area start -->
         <div class="container p-5">
-            <form>
+            <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="exampleInputProdName">Product Name</label>
                   <input type="text" class="form-control border-dark" id="exampleInputProdName" placeholder="Enter name of the product">
@@ -462,10 +462,13 @@
 						<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
 						<select class="custom-select mr-sm-2 border-dark" id="inlineFormCustomSelect">
 						  <option selected>Choose</option>
-						  <option value="XS">XS</option>
-						  <option value="S">S</option>
-						  <option value="XL">XL</option>
-						  <option value="XXL">XXL</option>
+						  <option value="shirt">shirt</option>
+						  <option value="tshirt">tshirt</option>
+						  <option value="hoodie">hoodie</option>
+						  <option value="pent">pent</option>
+						  <option value="leggings">leggings</option>
+						  <option value="kurti">kurti</option>
+						  <option value="short-top">short-top</option>
 						</select>
 					  </div>
 					  
@@ -632,6 +635,8 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/active.js"></script>
+	<script src="./checklogin.js"></script>
+	<script src="./addProduct.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
