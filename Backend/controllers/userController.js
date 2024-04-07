@@ -223,6 +223,20 @@ const getUserSellItems = async (req, res) => {
   }
 }
 
+const getItemSell = async (req, res) => {
+  try {
+    const orders = await Order.find({ itemid: req.params.id });
+    const add = await Address.find({ uid: orders.userid });
+    return res.json({ code: 200, success: true, data: {orders, add} });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
+}
+
 module.exports = {
   createUser,
   getItems,

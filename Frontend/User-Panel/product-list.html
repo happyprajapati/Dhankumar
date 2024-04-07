@@ -440,22 +440,8 @@
 		</div>
 		<!-- End breadcrumb area -->
 		<!-- cart-main-area start -->
-        <div class="container p-5">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">View Product</th>
-                  </tr>
-                </thead>
-                <tbody id="dataItem">
-                
-                </tbody>
-              </table>
+        <div class="container p-5" id="useritem">
+            
         </div>
 		<!-- <div class="cart-main-area section-padding--lg bg--white">
 			<div class="container">
@@ -614,6 +600,8 @@
 
 <script>
 	const loadData = async () =>{
+		const dataItem = document.getElementById("useritem");
+
 		let options = {
 		method: "POST",
 		body: JSON.stringify({
@@ -624,19 +612,30 @@
 	let p = await fetch("https://dhankumar.onrender.com/getuseritems", options);
 	let response = await p.json();
 	console.log(response)
-	let item = "";
-	response.data.map((dt) =>{
-		item += ` <tr>
-						<th scope="row">1</th>
-						<td>${dt.name}</td>
-						<td>${dt.price}</td>
-						<td>${dt.desc}</td>
-						<td><img src="./../../Backend/public/images/itemImages/${dt.img[0].name}"</td>
-						<td><button type="button" class="btn btn-primary" onclick="window.open('view-product.html/${dt._id}')">View Details</button></td>
+	if(response.data.length > 0){
+		let item = `<table class="table table-striped">
+					  <tr>
+						<th scope="col">Product Name</th>
+						<th scope="col">Price</th>
+						<th scope="col">Description</th>
+						<th scope="col">Image</th>
+						<th scope="col">View Product</th>
 					  </tr>`;
-	})
-	const dataItem = document.getElementById("dataItem");
-	dataItem.innerHTML(item);
+		response.data.map((dt) =>{
+			item += ` <tr>
+							<td>${dt.name}</td>
+							<td>${dt.price}</td>
+							<td>${dt.desc}</td>
+							<td><img src="./../../Backend/public/images/itemImages/${dt.img[0].name}"</td>
+							<td><button type="button" class="btn btn-primary" onclick="window.location.href = 'view-product.html?id=${dt._id}'">View Details</button></td>
+						  </tr>`;
+		})
+		item += "</tr></table>";
+		dataItem.innerHTML = item;
+	}
+	else{
+		dataItem.innerHTML = "<h1>No data found.</h1>"
+	}
 	}
 </script>
 
