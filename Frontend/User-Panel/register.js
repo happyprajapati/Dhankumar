@@ -1,13 +1,13 @@
 // console.log(firstName.value);
 
-const register = async (firstName, lastName, Email, pass) => {
+const register = async (firstName, contact, Email, pass) => {
 	let options = {
 		method: "POST",
 		body: JSON.stringify({
 			name: firstName.value,
 			email: Email.value,
 			password: pass.value,
-			contact: lastName.value,
+			contact: contact.value,
 		}),
 	};
 
@@ -18,13 +18,13 @@ const register = async (firstName, lastName, Email, pass) => {
 
 const mainFuncReg = async () => {
 	let firstName = document.getElementById("exampleFirstName");
-	let lastName = document.getElementById("exampleLastName");
+	let contact = document.getElementById("contact");
 	let Email = document.getElementById("exampleInputEmail");
 	let pass = document.getElementById("exampleRepeatPassword");
 
 	// console.log(firstName.value);
 
-	let reg = await register(firstName, lastName, Email, pass);
+	let reg = await register(firstName, contact, Email, pass);
 	// console.log("user registerd...");
 	console.log(reg);
 };
