@@ -42,8 +42,10 @@ const addItem = async (req, res) => {
   try {
     const { uid, name, price, brand, desc, category } = req.body;
     // console.log(req.files)
+    const imgs = await req.files;
+    console.log(imgs)
     const photos = [];
-    req.files.map(async (photo) => {
+    imgs.map(async (photo) => {
       photos.push(photo.filename);
     });
     const newItem = new Item({

@@ -12,7 +12,10 @@ document.getElementById("add").addEventListener("click", async function(e){
   for (var i = 0; i < img.length; i++) {
     imgs.push(img[i]);
   }
-  // console.log(imgs);
+  for (var i = 0; i < imgs.length; i++) {
+    // imgs.push(img[i]);
+    console.log(imgs[i]);
+  }
 
 let options = {
   method: "POST",

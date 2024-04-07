@@ -441,7 +441,7 @@
 		<!-- End breadcrumb area -->
 		<!-- cart-main-area start -->
         <div class="container p-5">
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" id="addItem">
                 <div class="form-group">
                   <label for="exampleInputProdName">Product Name</label>
                   <input type="text" class="form-control border-dark" id="exampleInputProdName" placeholder="Enter name of the product">
@@ -480,7 +480,7 @@
                   </div>
                   <div class="form-group">
                     <label for="itemImage">Product Images</label>
-                    <input type="file" class="form-control-file border rounded border-dark p-3" id="itemImage" multiple>
+                    <input type="file" class="form-control-file border rounded border-dark p-3" name="itemImage" id="itemImage" multiple>
                   </div>
                 <button class="btn btn-primary" id="add">Submit</button>
               </form>
