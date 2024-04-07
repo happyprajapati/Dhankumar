@@ -74,7 +74,7 @@ const addItem = async (req, res) => {
 
 const getItems = async (req, res) => {
   try {
-    const items = await Item.find({}, { projection: { _id: 1, name: 1, price: 1, brand: 0, desc: 0, category: 0, img:1 }}).limit(8) 
+    const items = await Item.find().limit(8) 
         return res.json({ code: 200, success: true, data: items })
   } catch (error) {
     return res.json({
