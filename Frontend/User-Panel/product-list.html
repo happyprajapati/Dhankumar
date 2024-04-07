@@ -452,7 +452,7 @@
                     <th scope="col">View Product</th>
                   </tr>
                 </thead>
-                <tbody id="dataTable">
+                <tbody id="dataItem">
                 
                 </tbody>
               </table>
@@ -623,9 +623,10 @@
 
 	let p = await fetch("https://dhankumar.onrender.com/getuseritems", options);
 	let response = await p.json();
-	let data = "";
+	console.log(response)
+	let item = "";
 	response.data.map((dt) =>{
-		data += ` <tr>
+		item += ` <tr>
 						<th scope="row">1</th>
 						<td>${dt.name}</td>
 						<td>${dt.price}</td>
@@ -634,8 +635,8 @@
 						<td><button type="button" class="btn btn-primary" onclick="window.open('view-product.html/${dt._id}')">View Details</button></td>
 					  </tr>`;
 	})
-	const dataTable = document.getElementById("dataTable");
-	dataTable.innerHTML(data);
+	const dataItem = document.getElementById("dataItem");
+	dataItem.innerHTML(item);
 	}
 </script>
 

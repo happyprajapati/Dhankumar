@@ -25,7 +25,7 @@ const limit = (req, file, cb) => {
 const itemimgstorage = multer.diskStorage({
   destination: (req, file, cb) => {
     // checkDir("itemImage")
-    cb(null, filepath.join(__dirname, "../public/images/"));
+    cb(null, "/public/images");
   },
   filename: (req, file, cb) => {
     console.log(file);
