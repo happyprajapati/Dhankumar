@@ -41,6 +41,7 @@ const createUser = async (req, res) => {
 const addItem = async (req, res) => {
   try {
     const { uid, name, price, brand, desc, category } = req.body;
+    console.log(req.files)
     const photos = [];
     req.files.map(async (photo) => {
       photos.push(photo.filename);
@@ -157,6 +158,25 @@ const paymentVarify = async (req,res) => {
       return res.json({ code: 200, success: true, msg: "Payment Successfull" });
     }
     return res.json({ code: 500, success: false, msg: "Invalid signature sent!" });
+  } catch (error) {
+    return res.json({
+      code: 500,
+      msg: `Something went wrong: ${error}`,
+      success: false,
+    });
+  }
+}
+
+const addOrder = async (req, res) => {
+  try {
+    const newOrder = new Order({
+      // itemid: req.body.itemid,
+      // userid: req.body.userid,
+      itemid: "",
+      userid: "",
+    })
+    newOrder.save();
+    return res.json({ code: 200, success: true, msg: "Order Added." });
   } catch (error) {
     return res.json({
       code: 500,
