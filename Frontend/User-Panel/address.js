@@ -50,6 +50,7 @@ document
 			contact: res.contact,
 		  },
 		  "handler": async function (response) {
+			console.log(response);
 			await fetch("https://dhankumar.onrender.com/varify", 
 		{
 			method: "POST",
