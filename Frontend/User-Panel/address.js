@@ -43,6 +43,7 @@ document
 		  "amount": 200,
 		  "currency": "INR",
 		  "name": "Happy",
+		  "order_id":res.order_id,
 		  "description": "Acme Corp",
 		  "image": "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg",
 		  "prefill": {
