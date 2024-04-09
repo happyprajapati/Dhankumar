@@ -151,6 +151,14 @@ const paymentVarify = async (req,res) => {
     const sign = razorpay_order_id + '|' + razorpay_payment_id;
     const exprctedSign = crypto.createHmac('sha256', 'rzp_test_MytonBdlQQC79x').update(sign.toString()).digest('hex');
     if (razorpay_signature === exprctedSign) {  
+      const newOrder = new Order({
+        // itemid: req.body.itemid,
+        // userid: req.body.userid,
+        itemid: "lrgnrtgrg",
+        userid: "retgrtghrg",
+      })
+      newOrder.save();
+      // return res.json({ code: 200, success: true, msg: "Order Added." });
       return res.json({ code: 200, success: true, msg: "Payment Successfull" });
     }
     return res.json({ code: 500, success: false, msg: "Invalid signature sent!" });
