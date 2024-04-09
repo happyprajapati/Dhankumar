@@ -102,6 +102,7 @@ const placeOrder = async (req, res) => {
   try {
     // const amount = req.body.amount;
     const { name, amount } = req.body;
+    console.log(req.body)
     // const user = await User.findById({_id:uid});
     const options = {
       amount: amount,
@@ -113,6 +114,7 @@ const placeOrder = async (req, res) => {
       options,
       (err, order) => {
         if (!err) {
+          console.log(order);
           return res.json({
             code: 200,
             success: true,
