@@ -145,7 +145,7 @@ const placeOrder = async (req, res) => {
 const paymentVarify = async (req,res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-    const expectedsign = crypto.hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id, secret);;
+    const expectedsign = crypto.hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id, "LMyTuzcrjxYGilP394lXZxcD");;
     // const exprctedSign = crypto.createHmac('sha256', 'rzp_test_MytonBdlQQC79x').update(sign.toString()).digest('hex');
     if (razorpay_signature === expectedsign) {  
       const newOrder = new Order({
