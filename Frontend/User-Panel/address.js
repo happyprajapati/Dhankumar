@@ -23,7 +23,7 @@ document
     const options = {
       method: "POST",
       body: JSON.stringify({
-        uid: "user",
+        // uid: "user",
         name: "tshirt",
         amount: 200,
       }),

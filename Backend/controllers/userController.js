@@ -127,7 +127,7 @@ const placeOrder = async (req, res) => {
         } else {
           return res.json({
             code: 500,
-            msg: `Something went wrong !!`,
+            msg: `Something went wrong !! ${err}`,
             success: false,
           });
         }
