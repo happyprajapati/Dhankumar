@@ -51,23 +51,23 @@ document
 			contact: res.contact,
 		  },
 		  "handler": async function (response) {
-			console.log(response);
-			await fetch("https://dhankumar.onrender.com/varify", 
-		{
-			method: "POST",
-			body: JSON.stringify({
-				razorpay_payment_id: response.razorpay_payment_id,
-				razorpay_order_id: response.razorpay_order_id,
-				razorpay_signature: response.razorpay_signature,
-				// uid : localStorage.getItem('uid'),
-			}),
-			headers: {
-				"Content-Type": "application/json"
-			}
-		}).then((response) => {return response.json()})
-		.then((res) => {
-			console.log(res);
-		})
+		// 	console.log(response);
+		// 	await fetch("https://dhankumar.onrender.com/varify", 
+		// {
+		// 	method: "POST",
+		// 	body: JSON.stringify({
+		// 		razorpay_payment_id: response.razorpay_payment_id,
+		// 		razorpay_order_id: response.razorpay_order_id,
+		// 		razorpay_signature: response.razorpay_signature,
+		// 		// uid : localStorage.getItem('uid'),
+		// 	}),
+		// 	headers: {
+		// 		"Content-Type": "application/json"
+		// 	}
+		// }).then((response) => {return response.json()})
+		// .then((res) => {
+		// 	console.log(res);
+		// })
 		  },
 		  "theme": {
 			  "color": "#3399cc"

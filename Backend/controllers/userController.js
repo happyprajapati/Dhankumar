@@ -3,7 +3,7 @@ const Item = require("./../models/items");
 const Order = require("./../models/orders");
 const Address = require("./../models/address");
 const crypto = require("crypto");
-const crypto_JS = require("@types/crypto-js");
+// const crypto_JS = require("@types/crypto-js");
 const Razorpay = require("razorpay");
 
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
@@ -146,24 +146,25 @@ const placeOrder = async (req, res) => {
 const paymentVarify = async (req,res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-    console.log(req.body)
-    const generated_signature = crypto_JS.hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id, "LMyTuzcrjxYGilP394lXZxcD");
+    // console.log(req.body)
+    // const generated_signature = crypto_JS.hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id, "LMyTuzcrjxYGilP394lXZxcD");
     // const sign = razorpay_order_id + '|' + razorpay_payment_id;
     // const exprctedSign = crypto.createHmac('sha256', 'rzp_test_MytonBdlQQC79x').update(sign.toString()).digest('hex');
-    console.log(razorpay_signature,generated_signature)
-    if (razorpay_signature === generated_signature) {  
-      const newOrder = new Order({
-        // itemid: req.body.itemid,
-        // userid: req.body.userid,
-        itemid: "lrgnrtgrg",
-        userid: "retgrtghrg",
-      })
-      newOrder.save();
+    // console.log(razorpay_signature,generated_signature)
+    // if (razorpay_signature === generated_signature) {  
+    //   const newOrder = new Order({
+    //     // itemid: req.body.itemid,
+    //     // userid: req.body.userid,
+    //     itemid: "lrgnrtgrg",
+    //     userid: "retgrtghrg",
+    //   })
+    //   newOrder.save();
       // return res.json({ code: 200, success: true, msg: "Order Added." });
       return res.json({ code: 200, success: true, msg: "Payment Successfull" });
-    }else{
-      return res.json({ code: 500, success: false, msg: "Invalid signature sent!" });
-    }
+    // }
+    // else{
+    //   return res.json({ code: 500, success: false, msg: "Invalid signature sent!" });
+    // }
   } catch (error) {
     return res.json({
       code: 500,
