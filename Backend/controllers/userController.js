@@ -8,7 +8,7 @@ const Razorpay = require("razorpay");
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
 
 const razorpayInstance = new Razorpay({
-	key_id: "rzp_test_MytonBdlQQC79x",
+	key: "rzp_test_MytonBdlQQC79x",
 	key_secret: "LMyTuzcrjxYGilP394lXZxcD",
 });
 
@@ -109,7 +109,7 @@ const placeOrder = async (req, res) => {
       receipt: crypto.randomBytes(10).toString("hex"),
     };
 
-    const payment = await razorpayInstance.orders.create(
+    await razorpayInstance.orders.create(
       options,
       (err, order) => {
         if (!err) {
@@ -133,7 +133,7 @@ const placeOrder = async (req, res) => {
         }
       }
     );
-    return res.json({ code: 200, data: payment, success: true });
+    // return res.json({ code: 200, data: payment, success: true });
   } catch (error) {
     return res.json({
       code: 500,
