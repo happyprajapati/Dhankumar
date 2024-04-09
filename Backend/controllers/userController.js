@@ -146,7 +146,7 @@ const paymentVarify = async (req,res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
     console.log(req.body)
-    const generated_signature = crypto.hmac_sha256(order_id + "|" + razorpay_payment_id, "LMyTuzcrjxYGilP394lXZxcD");
+    const generated_signature = crypto.hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id, "LMyTuzcrjxYGilP394lXZxcD");
     // const sign = razorpay_order_id + '|' + razorpay_payment_id;
     // const exprctedSign = crypto.createHmac('sha256', 'rzp_test_MytonBdlQQC79x').update(sign.toString()).digest('hex');
     console.log(razorpay_signature,generated_signature)
