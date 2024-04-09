@@ -102,7 +102,7 @@ const placeOrder = async (req, res) => {
   try {
     const amount = req.body.amount * 100;
     const { name, uid } = req.body;
-    const user = await User.findById({_id:uid});
+    // const user = await User.findById({_id:uid});
     const options = {
       amount,
       currency: "INR",
@@ -121,8 +121,8 @@ const placeOrder = async (req, res) => {
             amount: amount,
             key_id: "rzp_test_MytonBdlQQC79x",
             product_name: name,
-            email: user.email,
-            contact: user.contact,
+            email: "abc@gmail.com",
+            contact: 1212121212,
           });
         } else {
           return res.json({

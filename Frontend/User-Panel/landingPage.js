@@ -125,15 +125,17 @@ const mainFuncLandingP = async () => {
 	// console.log(landItems);
 	items = response.data;
 	console.log(response.data)
+	let dt = "";
 
 	if (items != null) {
 		for (let i = 0; i < items.length; i++) {
-			div.innerHTML +=
+			dt +=
 				"<div class='product product__style--3'><div class='product__thumb'><a class='first__img' href='single-product.html'><img src='images/books/11.png'alt='product image'></a></div><div class='product__content content--center'><h4><a href='single-product.html'>" +
-				data[i].name +
+				items[i].name +
 				"</a></h4><ul class='price d-flex'><li class='old_price'>" +
-				data[i].price +
+				items[i].price +
 				"</li></ul></div></div>";
 		}
+		div.innerHTML = dt;
 	}
 };
