@@ -8,7 +8,7 @@ const Razorpay = require("razorpay");
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
 
 const razorpayInstance = new Razorpay({
-	key: "rzp_test_MytonBdlQQC79x",
+	key_id: "rzp_test_MytonBdlQQC79x",
 	key_secret: "LMyTuzcrjxYGilP394lXZxcD",
 });
 
