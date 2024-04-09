@@ -52,13 +52,16 @@ document
 		  "handler": async function (response) {
 			await fetch("https://dhankumar.onrender.com/varify", 
 		{
-			mathod: "POST",
+			method: "POST",
 			body: JSON.stringify({
 				razorpay_payment_id: response.razorpay_payment_id,
 				razorpay_order_id: response.razorpay_order_id,
 				razorpay_signature: response.razorpay_signature,
 				// uid : localStorage.getItem('uid'),
-			})
+			}),
+			headers: {
+				"Content-Type": "application/json"
+			}
 		}).then((response) => {return response.json()})
 		.then((res) => {
 			console.log(res);
