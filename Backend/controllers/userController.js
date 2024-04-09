@@ -3,7 +3,7 @@ const Item = require("./../models/items");
 const Order = require("./../models/orders");
 const Address = require("./../models/address");
 const crypto = require("crypto");
-const crypto_JS = require("crypto-js");
+const crypto_JS = require("@types/crypto-js");
 const Razorpay = require("razorpay");
 
 // const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
