@@ -100,11 +100,11 @@ const getItem = async (req, res) => {
 
 const placeOrder = async (req, res) => {
   try {
-    const amount = req.body.amount * 100;
-    const { name, uid } = req.body;
+    // const amount = req.body.amount;
+    const { name, amount } = req.body;
     // const user = await User.findById({_id:uid});
     const options = {
-      amount,
+      amount: amount,
       currency: "INR",
       receipt: crypto.randomBytes(10).toString("hex"),
     };
